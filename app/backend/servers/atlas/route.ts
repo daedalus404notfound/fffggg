@@ -194,6 +194,7 @@ export async function GET(req: NextRequest) {
     const data = await fetchWithTimeout(`${WORKER_URL}/?${qs}`, {}, 8000).then(
       (r) => r.json(),
     );
+    console.log("[WORKER RESPONSE]", data);
     if (!data.success) return NextResponse.json(data, { status: 500 });
     console.log(data);
     const { shareToken, files } = data;
