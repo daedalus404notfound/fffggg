@@ -14,12 +14,12 @@ export const initialServers: ServerTypes[] = [
     desc: "Vast Collection",
   },
 
-  {
-    name: "Atlas II",
-    server: "atlas",
-    status: "queue",
-    desc: "4K Support & Multi Audio",
-  },
+  // {
+  //   name: "Atlas II",
+  //   server: "atlas",
+  //   status: "queue",
+  //   desc: "4K Support & Multi Audio",
+  // },
   {
     name: "Thanatos III",
     server: "thanatos",
