@@ -10,7 +10,8 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY_ATLAS!,
 );
 
-const WORKER_URL = "https://main.jinluxuz.workers.dev";
+const WORKER_URL = "https://proxy.jerometecson0.workers.dev";
+// const WORKER_URL = "https://main.jinluxuz.workers.dev";
 const WORKER_SECRET = "xk92mZpQ7vLw3nRt";
 const FEBBOX_PLAYER_WORKER = "https://febbox3.jinluxusz.workers.dev";
 const MAX_FILE_SIZE_GB = 60;
