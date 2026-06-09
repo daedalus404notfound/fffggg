@@ -168,7 +168,7 @@ export async function GET(req: NextRequest) {
 
     const step2Url = `https://holly-2.${randomWorker()}.workers.dev/?embed_url=${encodeURIComponent(embedUrl)}`;
 
-    const step2Res = await fetchWithTimeout(step2Url, {}, 6000);
+    const step2Res = await fetchWithTimeout(step2Url, {}, 15000);
     if (!step2Res.ok) {
       return NextResponse.json(
         {
@@ -197,7 +197,7 @@ export async function GET(req: NextRequest) {
       const res = await fetchWithTimeout(
         proxiedUrl,
         { method: "HEAD", headers: { Range: "bytes=0-1" } },
-        3000,
+        6000,
       ).catch(() => null);
 
       if (res?.ok) {
