@@ -12,16 +12,15 @@ const supabase = createClient(
 
 const HOLLY_WORKERS = [
   "zxcprime360",
-  // "zxcprime367",
-  // "zxcprime368",
-  // "jinluxus303",
-  // "zxcprime359",
-
-  // "zxcprime361",
-  // "zxcprime362",
-  // "jerometecson21799",
-  // "jerometecsonn",
-  // "amenohabakiri174",
+  "zxcprime361",
+  "zxcprime367",
+  "zxcprime368",
+  "jinluxus303",
+  "zxcprime359",
+  "zxcprime362",
+  "jerometecson21799",
+  "jerometecsonn",
+  "amenohabakiri174",
 ];
 
 function randomWorker(): string {

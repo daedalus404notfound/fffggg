@@ -1,1 +1,1 @@
-export const SALT = "86967856456345667565";
+export const SALT = "12343492892347823445";
