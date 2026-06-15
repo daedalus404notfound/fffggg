@@ -70,6 +70,7 @@ export default function useSource(
       title,
       year,
       quality,
+      dub,
     ],
     enabled: Boolean(tmdbId && imdbId && server === server) && enable, // ← blocks fetch while scrolling
     retry: false,

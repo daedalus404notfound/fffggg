@@ -309,7 +309,6 @@ export default function Player() {
   useEffect(() => {
     if (!dub) return;
     handleMarkDub();
-    refetch();
   }, [dub]);
 
   useEffect(() => {
