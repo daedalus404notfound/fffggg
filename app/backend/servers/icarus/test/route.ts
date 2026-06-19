@@ -1,7 +1,293 @@
-//app/backend/server/icarus/test/route.ts
+// import { NextRequest, NextResponse } from "next/server";
+// import https from "https";
 
+// function getRandomAfricanIP() {
+//   const ranges: [number, number][] = [
+//     [41, 57],
+//     [41, 60],
+//     [41, 72],
+//     [41, 73],
+//     [102, 0],
+//     [102, 22],
+//     [105, 16],
+//     [105, 48],
+//     [197, 136],
+//     [45, 96],
+//   ];
+//   const base = ranges[Math.floor(Math.random() * ranges.length)];
+//   const rand = () => Math.floor(Math.random() * 254) + 1;
+//   return `${base[0]}.${base[1]}.${rand()}.${rand()}`;
+// }
+
+// function postJson(
+//   url: string,
+//   body: any,
+//   headers: Record<string, string>,
+// ): Promise<any> {
+//   return new Promise((resolve, reject) => {
+//     const data = JSON.stringify(body);
+//     const u = new URL(url);
+//     const req = https.request(
+//       {
+//         hostname: u.hostname,
+//         path: u.pathname,
+//         method: "POST",
+//         headers: { ...headers, "Content-Length": Buffer.byteLength(data) },
+//       },
+//       (res) => {
+//         let chunks = "";
+//         res.on("data", (c) => (chunks += c));
+//         res.on("end", () => {
+//           try {
+//             resolve(JSON.parse(chunks));
+//           } catch (e) {
+//             reject(e);
+//           }
+//         });
+//       },
+//     );
+//     req.on("error", reject);
+//     req.write(data);
+//     req.end();
+//   });
+// }
+
+// export async function GET(req: NextRequest) {
+//   const keyword = req.nextUrl.searchParams.get("keyword");
+//   const page = req.nextUrl.searchParams.get("page") ?? "1";
+//   const perPage = req.nextUrl.searchParams.get("perPage") ?? "10";
+
+//   if (!keyword) {
+//     return NextResponse.json(
+//       { success: false, error: "keyword is required" },
+//       { status: 400 },
+//     );
+//   }
+
+//   const randomIP = getRandomAfricanIP();
+//   const headers = {
+//     "Content-Type": "application/json",
+//     "X-Client-Info": '{"timezone":"Africa/Nairobi"}',
+//     "Accept-Language": "en-US,en;q=0.5",
+//     Accept: "application/json",
+//     "User-Agent": "okhttp/4.12.0",
+//     "X-Forwarded-For": randomIP,
+//     "CF-Connecting-IP": randomIP,
+//     "X-Real-IP": randomIP,
+//     Referer: "https://fmoviesunblocked.net/",
+//     Origin: "https://fmoviesunblocked.net",
+//   };
+
+//   try {
+//     const json = await postJson(
+//       "https://api6.aoneroom.com/wefeed-mobile-bff/subject-api/search/v2",
+//       { page: Number(page), perPage: Number(perPage), keyword },
+//       headers,
+//     );
+
+//     return NextResponse.json({ success: true, raw: json });
+//   } catch (err: any) {
+//     return NextResponse.json(
+//       { success: false, error: err?.message },
+//       { status: 500 },
+//     );
+//   }
+// }
+// // import { NextResponse } from "next/server";
+// // import { createClient } from "@supabase/supabase-js";
+
+// // const supabase = createClient(
+// //   process.env.SUPABASE_URL_MOVIEBOX!,
+// //   process.env.SUPABASE_SERVICE_ROLE_KEY_MOVIEBOX!,
+// // );
+// // const MOVIE_FN =
+// //   "https://streambox-scrapper.vercel.app/_serverFn/047e86a9630f58b72dd91c87b92545d6747ca2ef4d6f56ceef48efd8f9532b4d";
+
+// // const TV_FN =
+// //   "https://streambox-scrapper.vercel.app/_serverFn/d0a9a6772829aa71c223f129e8463656d6a3d2c7dbab0b16241e47edc346af55";
+
+// // function decodeTSS(node: any): any {
+// //   if (!node || typeof node !== "object") return node;
+
+// //   switch (node.t) {
+// //     case 0:
+// //     case 1:
+// //     case 2:
+// //       return node.s;
+
+// //     case 9:
+// //       return (node.a || []).map(decodeTSS);
+
+// //     case 10: {
+// //       const obj: Record<string, any> = {};
+// //       const keys = node.p?.k || [];
+// //       const values = node.p?.v || [];
+
+// //       for (let i = 0; i < keys.length; i++) {
+// //         obj[keys[i]] = decodeTSS(values[i]);
+// //       }
+
+// //       return obj;
+// //     }
+
+// //     case 11:
+// //       return {};
+
+// //     default:
+// //       return node.s ?? node;
+// //   }
+// // }
+
+// // export async function GET(req: Request) {
+// //   try {
+// //     const { searchParams } = new URL(req.url);
+
+// //     const tmdbId = Number(searchParams.get("tmdbId"));
+// //     const mediaType = searchParams.get("mediaType");
+
+// //     const season = Number(searchParams.get("season") || 0);
+// //     const episode = Number(searchParams.get("episode") || 0);
+
+// //     const endpoint = mediaType === "tv" ? TV_FN : MOVIE_FN;
+
+// //     if (!mediaType) {
+// //       return NextResponse.json(
+// //         {
+// //           success: false,
+// //           message: "mediatype required",
+// //         },
+// //         { status: 500 },
+// //       );
+// //     }
+// //     const payload =
+// //       mediaType === "tv"
+// //         ? {
+// //             t: {
+// //               t: 10,
+// //               i: 0,
+// //               p: {
+// //                 k: ["data"],
+// //                 v: [
+// //                   {
+// //                     t: 10,
+// //                     i: 1,
+// //                     p: {
+// //                       k: ["tmdbId", "season", "episode"],
+// //                       v: [
+// //                         { t: 0, s: tmdbId },
+// //                         { t: 0, s: season },
+// //                         { t: 0, s: episode },
+// //                       ],
+// //                     },
+// //                     o: 0,
+// //                   },
+// //                 ],
+// //               },
+// //               o: 0,
+// //             },
+// //             f: 63,
+// //             m: [],
+// //           }
+// //         : {
+// //             t: {
+// //               t: 10,
+// //               i: 0,
+// //               p: {
+// //                 k: ["data"],
+// //                 v: [
+// //                   {
+// //                     t: 10,
+// //                     i: 1,
+// //                     p: {
+// //                       k: ["tmdbId"],
+// //                       v: [{ t: 0, s: tmdbId }],
+// //                     },
+// //                     o: 0,
+// //                   },
+// //                 ],
+// //               },
+// //               o: 0,
+// //             },
+// //             f: 63,
+// //             m: [],
+// //           };
+
+// //     const res = await fetch(endpoint, {
+// //       method: "POST",
+// //       headers: {
+// //         Accept:
+// //           "application/x-tss-framed, application/x-ndjson, application/json",
+// //         "Content-Type": "application/json",
+// //         Origin: "https://streambox-scrapper.vercel.app",
+// //         Referer: "https://streambox-scrapper.vercel.app/",
+// //         "x-tsr-serverfn": "true",
+// //       },
+// //       body: JSON.stringify(payload),
+// //     });
+
+// //     const text = await res.text();
+// //     const raw = JSON.parse(text);
+// //     const decoded = decodeTSS(raw);
+
+// //     const data = decoded?.result?.data;
+// //     const subjects = data?.allSubjects || [];
+// //     const subject = subjects[0];
+
+// //     const dubs = (data?.languages || [])
+// //       .map((dub: any) => {
+// //         const dubSubject = subjects.find(
+// //           (s: any) => s.subjectId === dub.subjectId,
+// //         );
+// //         const dubDetailPath = dubSubject?.detailUrl?.split("/detail/")[1] ?? "";
+// //         if (!dubDetailPath) return null;
+
+// //         return {
+// //           type: dub.code === "en" ? 0 : 1,
+// //           lanCode: dub.code,
+// //           lanName: dub.label,
+// //           original: dub.code === "en",
+// //           subjectId: dub.subjectId,
+// //           detailPath: dubDetailPath,
+// //           isMain: false,
+// //         };
+// //       })
+// //       .filter(Boolean);
+
+// //     const result = {
+// //       tmdb_id: String(tmdbId),
+// //       media_type: mediaType,
+// //       season: mediaType === "tv" ? season : "",
+// //       episode: mediaType === "tv" ? episode : "",
+// //       title: subject?.title ?? "",
+// //       release_date: subject?.releaseDate ?? "",
+// //       dubs,
+// //     };
+
+// //     if (dubs.length > 0) {
+// //       await supabase.from("moviebox_cache").upsert(
+// //         {
+// //           tmdb_id: result.tmdb_id,
+// //           media_type: result.media_type,
+// //           title: result.title,
+// //           release_date: result.release_date,
+// //           dubs: result.dubs,
+// //         },
+// //         { onConflict: "tmdb_id,media_type", ignoreDuplicates: true },
+// //       );
+// //     }
+
+// //     return NextResponse.json(result);
+// //   } catch (error) {
+// //     return NextResponse.json(
+// //       {
+// //         success: false,
+// //         error: error instanceof Error ? error.message : "Unknown error",
+// //       },
+// //       { status: 500 },
+// //     );
+// //   }
+// // }
 import { NextRequest, NextResponse } from "next/server";
-
 function getRandomAfricanIP() {
   const ranges: [number, number][] = [
     [41, 57],
@@ -20,10 +306,20 @@ function getRandomAfricanIP() {
   return `${base[0]}.${base[1]}.${rand()}.${rand()}`;
 }
 
+function fetchWithTimeout(
+  url: string,
+  options: { headers: Record<string, string> },
+  timeoutMs: number,
+): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() =>
+    clearTimeout(timer),
+  );
+}
+
 export async function GET(req: NextRequest) {
   const detailPath = req.nextUrl.searchParams.get("detailPath");
-  const season = req.nextUrl.searchParams.get("season");
-  const episode = req.nextUrl.searchParams.get("episode");
 
   if (!detailPath) {
     return NextResponse.json(
@@ -33,7 +329,8 @@ export async function GET(req: NextRequest) {
   }
 
   const randomIP = getRandomAfricanIP();
-  const headers = {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
     "X-Client-Info": '{"timezone":"Africa/Nairobi"}',
     "Accept-Language": "en-US,en;q=0.5",
     Accept: "application/json",
@@ -45,32 +342,33 @@ export async function GET(req: NextRequest) {
     Origin: "https://fmoviesunblocked.net",
   };
 
-  const params = new URLSearchParams({ detailPath });
-  if (season) params.set("se", season);
-  if (episode) params.set("ep", episode);
-
   try {
-    const res = await fetch(
-      `https://h5.aoneroom.com/wefeed-h5-bff/web/subject/download?${params.toString()}`,
+    const detailRes = await fetchWithTimeout(
+      `https://h5-api.aoneroom.com/wefeed-h5api-bff/detail?detailPath=${detailPath}`,
       { headers },
+      8000,
     );
 
-    const json = await res.json();
-    const sources = json?.data?.data || json?.data || json;
-    const downloads = sources?.downloads || [];
-    const captions = sources?.captions || [];
+    const detailJson = await detailRes.json();
+    const info = detailJson?.data?.data || detailJson?.data || detailJson;
+    const subject = info?.subject || {};
+    const media_type = subject.subjectType === 1 ? "movie" : "tv";
 
     return NextResponse.json({
       success: true,
-      downloads,
-      subtitles: captions.map((c: any) => ({
-        id: c.lan,
-        display: c.lanName,
-        file: c.url,
-      })),
-      raw: json,
+      title: subject?.title ?? null,
+      media_type,
+      releaseDate: subject?.releaseDate ?? null,
+      dubs: subject?.dubs ?? [],
+      isForbid: false,
     });
   } catch (err: any) {
+    if (err?.name === "AbortError") {
+      return NextResponse.json(
+        { success: false, error: "Request timed out" },
+        { status: 504 },
+      );
+    }
     return NextResponse.json(
       { success: false, error: err?.message },
       { status: 500 },
