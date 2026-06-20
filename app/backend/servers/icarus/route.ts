@@ -587,8 +587,7 @@ export async function GET(req: NextRequest) {
 
     // -------- MovieBox Logic --------
     const randomIP = getRandomAfricanIP();
-    const host = "h5.aoneroom.com";
-    const baseUrl = `https://${host}`;
+    const baseUrl = `https://h5-api.aoneroom.com/wefeed-h5api-bff`;
     const headers = {
       "X-Client-Info": '{"timezone":"Africa/Nairobi"}',
       "Accept-Language": "en-US,en;q=0.5",
@@ -613,7 +612,7 @@ export async function GET(req: NextRequest) {
       dubs = cached.dubs ?? [];
     } else {
       const searchRes = await fetchWithTimeout(
-        `https://h5-api.aoneroom.com/wefeed-h5api-bff/subject/search`,
+        `${baseUrl}/subject/search`,
         {
           method: "POST",
           headers: {
@@ -738,7 +737,7 @@ export async function GET(req: NextRequest) {
       }
 
       const detailRes = await fetchWithTimeout(
-        `https://h5-api.aoneroom.com/wefeed-h5api-bff/detail?detailPath=${selectedItem.detailPath}`,
+        `${baseUrl}/detail?detailPath=${selectedItem.detailPath}`,
         {
           headers: {
             ...headers,
@@ -837,14 +836,14 @@ export async function GET(req: NextRequest) {
       sortedDownloads = cachedDownloads.downloads ?? [];
       subtitles = cachedDownloads.subtitles ?? [];
     } else {
-      const params = new URLSearchParams({ subjectId });
+      const params = new URLSearchParams({ subjectId, detailPath });
       if (mediaType === "tv") {
         if (season) params.set("se", String(season));
         if (episode) params.set("ep", String(episode));
       }
 
       const sourcesRes = await fetchWithTimeout(
-        `${baseUrl}/wefeed-h5-bff/web/subject/download?${params.toString()}`,
+        `${baseUrl}/subject/download?${params.toString()}`,
         {
           headers: {
             ...headers,
