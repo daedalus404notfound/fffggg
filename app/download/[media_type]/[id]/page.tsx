@@ -65,7 +65,7 @@ export default function MovieDetails() {
   const param = useParams();
   const media_type = String(param.media_type);
   const id = String(param.id);
-  const { data } = useTmdbDetails(media_type, id);
+  const { data } = useTmdbDetails(media_type, id, "en-US");
   const isTv = media_type === "tv";
   const [tab, setTab] = useState<Tab>("overview");
   const [posterLoaded, setPosterLoaded] = useState(false);
