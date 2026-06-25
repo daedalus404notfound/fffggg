@@ -228,7 +228,7 @@ export default function Player() {
       load,
       handleServerFail,
     });
-  const timer = isMobile ? 5000 : 5000;
+  const timer = isMobile ? 500000 : 500000;
   const { isVisible, resetTimer, setIsVisible, lockTimer } =
     useHiddenOverlay(timer);
 
@@ -359,7 +359,7 @@ export default function Player() {
     }
   }, [state.ended]);
 
-  console.log("sds", servers[serverIndex].status);
+  // console.log("sds", servers[serverIndex].status);
 
   useEffect(() => {
     if (!mergeSubtitles.length) return;
@@ -387,10 +387,12 @@ export default function Player() {
   useKeyboardControls({ controls, setDoubleTapSide });
 
   useEffect(() => {
-    if (isMobile && state.canPlay) {
+    if (state.canPlay) {
       setShowServer(false);
+    } else {
+      setShowServer(true);
     }
-  }, [isMobile, state.canPlay]);
+  }, [state.canPlay]);
 
   const handleDoubleTap = useDoubleTap(
     (e) => {

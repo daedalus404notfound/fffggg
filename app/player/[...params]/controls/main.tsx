@@ -193,7 +193,7 @@ export default function MainControls({
           </div>
         </div>
         <div className="space-y-3  max-[340px]:space-y-1 pointer-events-auto ">
-          <div className=" space-y-2">
+          <div className=" space-y-2 lg:px-3">
             <div className="group  lg:h-4 h-2  max-[340px]:h-1   max-[340px]:px-1 flex justify-center items-center ">
               <div
                 className="relative w-full"
