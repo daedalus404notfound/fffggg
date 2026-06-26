@@ -151,7 +151,7 @@ export default function MainControls({
     >
       <div
         className={cn(
-          "p-4 landscape:p-2",
+          "lg:p-4 p-3  landscape:p-2",
           "flex justify-between items-center",
           "pointer-events-auto",
         )}
@@ -175,7 +175,7 @@ export default function MainControls({
           <p
             className={cn(
               "sm:text-xs text-xs landscape:text-[0.6rem]",
-              "text-muted-foreground",
+              "text-gray-400",
             )}
           >
             Your'e Watching
@@ -200,7 +200,7 @@ export default function MainControls({
       <div
         className={cn(
           "w-full",
-          "p-4 landscape:p-2",
+          "lg:p-4 p-3 landscape:p-2",
           "lg:py-6 py-3",
           "space-y-3",
         )}
@@ -217,7 +217,7 @@ export default function MainControls({
               className={cn("lg:w-1 w-0.5 lg:h-5 h-3 rounded-full")}
               style={{ backgroundColor: `#${color}` }}
             ></div>
-            <p className={cn("lg:text-lg md:text-sm text-muted-foreground")}>
+            <p className={cn("lg:text-lg md:text-sm text-gray-400")}>
               Your'e Watching
             </p>
           </span>
@@ -232,8 +232,8 @@ export default function MainControls({
           </h1>
           <div
             className={cn(
-              "lg:text-lg md:text-base",
-              "text-muted-foreground font-medium",
+              "lg:text-lg md:text-sm",
+              "text-gray-400 font-medium",
               "md:mt-3",
               "flex gap-3",
             )}
@@ -334,9 +334,9 @@ export default function MainControls({
                 {state.playing ? (
                   <motion.div
                     key="pause"
-                    initial={{ opacity: 0, scale: 1.5 }}
+                    initial={{ opacity: 0, scale: 1.3 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.5 }}
+                    exit={{ opacity: 0, scale: 1.3 }}
                     transition={{ duration: 0.1 }}
                   >
                     <PauseIcon
@@ -348,9 +348,9 @@ export default function MainControls({
                 ) : (
                   <motion.div
                     key="play"
-                    initial={{ opacity: 0, scale: 1.5 }}
+                    initial={{ opacity: 0, scale: 1.3 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.5 }}
+                    exit={{ opacity: 0, scale: 1.3 }}
                     transition={{ duration: 0.1 }}
                   >
                     <PlayIcon
@@ -370,9 +370,9 @@ export default function MainControls({
                   {state.muted || state.volume === 0 ? (
                     <motion.div
                       key="muted"
-                      initial={{ opacity: 0, scale: 1.5 }}
+                      initial={{ opacity: 0, scale: 1.3 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.5 }}
+                      exit={{ opacity: 0, scale: 1.3 }}
                       transition={{ duration: 0.1 }}
                     >
                       <VolumeOffIcon
@@ -384,9 +384,9 @@ export default function MainControls({
                   ) : (
                     <motion.div
                       key="unmuted"
-                      initial={{ opacity: 0, scale: 1.5 }}
+                      initial={{ opacity: 0, scale: 1.3 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.5 }}
+                      exit={{ opacity: 0, scale: 1.3 }}
                       transition={{ duration: 0.1 }}
                     >
                       <VolumeOnIcon
@@ -406,7 +406,7 @@ export default function MainControls({
                   className={cn(
                     "w-0 group-hover:w-24",
                     "transition-[width] duration-200 ease-in-out",
-                    "hidden md:block",
+                    "hidden md:flex",
                   )}
                   color={color}
                 />
@@ -436,7 +436,7 @@ export default function MainControls({
               )}
             </div>
 
-            <div className={cn("flex items-center md:gap-4 gap-6")}>
+            <div className={cn("flex items-center md:gap-3 gap-6")}>
               <Settings
                 mergeSubtitles={mergeSubtitles}
                 quality={quality}
@@ -479,9 +479,9 @@ export default function MainControls({
                 {state.fullscreen ? (
                   <motion.div
                     key="minimize"
-                    initial={{ opacity: 0, scale: 1.5 }}
+                    initial={{ opacity: 0, scale: 1.3 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.5 }}
+                    exit={{ opacity: 0, scale: 1.3 }}
                     transition={{ duration: 0.1 }}
                   >
                     <MinimizeIcon
@@ -493,9 +493,9 @@ export default function MainControls({
                 ) : (
                   <motion.div
                     key="maximize"
-                    initial={{ opacity: 0, scale: 1.5 }}
+                    initial={{ opacity: 0, scale: 1.3 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.5 }}
+                    exit={{ opacity: 0, scale: 1.3 }}
                     transition={{ duration: 0.1 }}
                   >
                     <MaximizeIcon

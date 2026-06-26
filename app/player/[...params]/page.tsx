@@ -229,7 +229,7 @@ export default function Player() {
       load,
       handleServerFail,
     });
-  const timer = isMobile ? 5000 : 5000;
+  const timer = isMobile ? 5000 : 2000;
   const { isVisible, resetTimer, setIsVisible, lockTimer } =
     useHiddenOverlay(timer);
 
@@ -401,6 +401,7 @@ export default function Player() {
       const side = e.clientX - rect.left < rect.width / 2 ? "left" : "right";
       controls.skipBy(side === "left" ? -15 : 15);
       setDoubleTapSide(side);
+      resetTimer();
       setTimeout(() => setDoubleTapSide(null), 600);
     },
     250,
@@ -410,6 +411,7 @@ export default function Player() {
           setIsVisible((prev) => !prev);
         } else {
           controls.togglePlay();
+          resetTimer();
         }
       },
     },
@@ -469,7 +471,10 @@ export default function Player() {
   return (
     <div
       ref={containerRef}
-      className="relative h-svh w-full overflow-hidden bg-black"
+      className={cn(
+        "relative h-svh w-full overflow-hidden bg-black ",
+        isVisible ? "" : "cursor-none",
+      )}
       onClick={color === "305CDE" ? undefined : triggerAd}
     >
       {/* Video */}

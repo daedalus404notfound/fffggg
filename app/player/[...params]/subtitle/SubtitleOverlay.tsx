@@ -76,8 +76,8 @@ export default function SubtitleOverlay({
         position === "bottom" ? "bottom-0" : "top-0",
         position === "bottom"
           ? isVisible
-            ? "-translate-y-25 md:-translate-y-50 lg:-translate-y-50 landscape:-translate-y-18"
-            : "-translate-y-10 md:-translate-y-15 lg:-translate-y-15 landscape:-translate-y-5"
+            ? "-translate-y-25 md:-translate-y-20 lg:-translate-y-30 landscape:-translate-y-18"
+            : "-translate-y-10 md:-translate-y-10 lg:-translate-y-15 landscape:-translate-y-5"
           : isVisible
             ? "translate-y-15 lg:translate-y-25"
             : "translate-y-5 lg:translate-y-10",
