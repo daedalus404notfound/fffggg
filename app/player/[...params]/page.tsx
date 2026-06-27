@@ -203,7 +203,6 @@ export default function Player() {
     season,
     episode,
     enabled: media_type === "tv",
-    
   });
 
   // ─── Subtitles ───────────────────────────────────────────────────────────────
