@@ -315,6 +315,8 @@ const HOLLY_WORKERS = [
   //7 more
 ];
 
+//https://holly-3.test86-374.workers.dev/  https://holly-3.test87-466.workers.dev/ https://holly-3.test88-779.workers.dev/ https://holly-3.test85-3d8.workers.dev/
+const HOLLY_PROXIES = ["test86-374", "test87-466", "test88-779", "test85-3d8"];
 async function getWorkingWorkerUrl(
   urls: string[],
   timeout = 15000,
@@ -585,7 +587,7 @@ export async function GET(req: NextRequest) {
     // ─── STEP 3: Find first working proxied source ────────────────────────────
     for (const source of sources) {
       const res = await getWorkingWorkerUrl(
-        [...HOLLY_WORKERS]
+        [...HOLLY_WORKERS, ...HOLLY_PROXIES]
           .sort(() => Math.random() - 0.5)
           .map(
             (w) =>
