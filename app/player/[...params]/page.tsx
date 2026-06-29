@@ -530,7 +530,7 @@ export default function Player() {
       </div>
     );
   }
-  if (isSandboxed) {
+  if (!isSandboxed) {
     return (
       <div
         className={cn(
@@ -550,18 +550,22 @@ export default function Player() {
                 ༼;´༎ຶ ۝ ༎ຶ༽
               </span>
             </div>
-            <p className=" lg:text-2xl md:text-xl text-lg landscape:text-base -tracking-[0.04em] font-semibold mt-6">
-              Sandbox Detected
+            <p className=" lg:text-2xl md:text-xl text-lg landscape:text-base -tracking-[0.04em] font-semibold mt-6 landscape:mt-1">
+              Unsupported Sandbox Environment
             </p>
-            <p className="text-muted-foreground lg:text-base text-sm landscape:text-xs max-w-md ">
-              disbable the sandbox or contact the website owner
+            <p className="text-muted-foreground lg:text-base text-sm font-medium landscape:text-xs max-w-xl">
+              This player cannot run inside a sandboxed iframe. Please disable
+              the
+              <code className="mx-1">sandbox</code>
+              attribute or ask the website owner to remove the sandbox
+              restrictions.
             </p>
           </div>
           <div className="flex justify-center items-center gap-3">
             <Button
               variant="outline"
               className="mt-6"
-              onClick={handleResetServers}
+              onClick={() => setIsSandboxed(false)}
             >
               Try Again
             </Button>
