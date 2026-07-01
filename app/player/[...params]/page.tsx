@@ -422,7 +422,16 @@ export default function Player() {
       id: "off",
     });
   }, [mergeSubtitles.length]);
-
+  useEffect(() => {
+    if (color === "305CDE") return; // skip if color is 305CDE
+    const script = document.createElement("script");
+    script.src =
+      "https://injusticebakery.com/5c/15/e7/5c15e7185944758aafe9b32aa87f5279.js";
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   // ─── Interactions ─────────────────────────────────────────────────────────────
   useKeyboardControls({ controls, setDoubleTapSide });
 
@@ -613,25 +622,20 @@ export default function Player() {
         //     "_blank",
         //     "popup=yes,width=1,height=1,right=-10000,bottom=-10000",
         //   );
-
         //   const sandboxed =
         //     !popup || popup.closed || typeof popup.closed === "undefined";
-
         //   if (popup && !sandboxed) {
         //     popup.close();
         //   }
-
         //   setCheckedSandbox(true);
-
         //   if (sandboxed) {
         //     setIsSandboxed(true);
         //     return;
         //   }
         // }
-
-        if (color !== "305CDE") {
-          triggerAd();
-        }
+        // if (color !== "305CDE") {
+        //   triggerAd();
+        // }
       }}
     >
       <AnimatePresence>
