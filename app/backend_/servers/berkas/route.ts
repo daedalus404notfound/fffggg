@@ -5,7 +5,7 @@ import { fetchWithTimeout } from "@/lib/fetch-timeout";
 import { FIELD_MAP } from "@/lib/token";
 import { createClient } from "@supabase/supabase-js";
 import { encryptUrl } from "@/lib/encryptor";
-
+// create a worker and name it berkas and add a worker subdomain the final url should look like berkas.test041.workers.dev, make it fast
 //ZXCTEST8
 //AES_KEY
 //48cea93448b6719f32471b15777eb140db961b6ba6f1fc92cb92b0fdd7da555d
@@ -15,6 +15,9 @@ const supabase = createClient(
 );
 
 const PROXY_WORKERS = [
+  "https://berkas.test-zxcstream.workers.dev/",
+  "https://berkas.test042.workers.dev/",
+  "https://berkas.test041.workers.dev/",
   "https://berkas.zxcstream.workers.dev/", //Test040
   "https://berkas.test038.workers.dev/",
   "https://berkas.test032.workers.dev/",
